@@ -6,6 +6,12 @@ class openssl::packages {
     ensure => $openssl::package_ensure,
   }
 
+  if $::osfamily == 'Debian'
+    package { 'libssl-dev':
+      ensure => $openssl::libssl_dev_ensure,
+    }
+  }
+
   if $::osfamily == 'Debian' or (
   $::osfamily == 'RedHat' and versioncmp($::operatingsystemrelease, '6.0') >= 0) {
     ensure_packages(['ca-certificates'], {
