@@ -6,9 +6,9 @@ class openssl::packages {
     ensure => $openssl::package_ensure,
   }
 
-  if $::osfamily == 'Debian' {
+  if $openssl::dev_package_ensure && $::osfamily == 'Debian' {
     package { 'libssl-dev':
-      ensure => $openssl::libssl_dev_ensure,
+      ensure => $openssl::dev_package_ensure,
     }
   }
 
